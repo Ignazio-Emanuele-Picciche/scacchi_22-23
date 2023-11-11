@@ -10,6 +10,11 @@ Created on Thu Nov 10 10:42:39 2022
 from Scacchiera import Scacchiera
 from Pezzo import Pezzo
 from Torre import Torre
+from Regina import Regina
+from Re import Re
+from Alfiere import Alfiere
+from Cavallo import Cavallo
+from Pedone import Pedone
 
 
 def in_board(posizione):
@@ -54,6 +59,7 @@ def get_mossa():
     while True:
         mossa = input("Dammi la mossa: ")
         if not len(mossa) == 5:  # l'input non è una mossa
+            print('La lunghezza della stringa non è valida')
             exit(0)              # termina il programma
         partenza = [mossa[0].upper(), int(mossa[1])]
         destinazione = [mossa[3].upper(), int(mossa[4])]
@@ -66,14 +72,47 @@ def get_mossa():
 if __name__ == "__main__":
     # setup del gioco
     scacchiera = Scacchiera()
-    # posizione 4 pezzi bianchi nelle prime 4 righe della colonna A
-    for i in range(1, 5):
-        p = Torre('W')
-        scacchiera.metti(p, ['A', i])
-    # posizione 4 pezzi neri nelle prime 4 righe della colonna H
-    for i in range(1, 5):
-        p = Torre('B')
-        scacchiera.metti(p, ['H', i])
+    
+    # # posizione 4 pezzi bianchi nelle prime 4 righe della colonna A
+    # for i in range(1, 5):
+    #     p = Torre('W')
+    #     scacchiera.metti(p, ['A', i])
+    # # posizione 4 pezzi neri nelle prime 4 righe della colonna H
+    # for i in range(1, 5):
+    #     p = Torre('B')
+    #     scacchiera.metti(p, ['H', i])
+
+
+    # Metto i pedoni bianchi    
+    for i in range(1,9):
+        scacchiera.metti(Pedone('W'), ['B', i])
+
+    # Metto tutti i pezzi bianchi
+    scacchiera.metti(Torre('W'), ['A', 1])
+    scacchiera.metti(Cavallo('W'), ['A', 2])
+    scacchiera.metti(Alfiere('W'), ['A', 3])
+    scacchiera.metti(Regina('W'), ['A', 4])
+    scacchiera.metti(Re('W'), ['A', 5])
+    scacchiera.metti(Alfiere('W'), ['A', 6])
+    scacchiera.metti(Cavallo('W'), ['A', 7])
+    scacchiera.metti(Torre('W'), ['A', 8])
+
+
+
+    # Metto i pedoni neri    
+    for i in range(1,9):
+        scacchiera.metti(Pedone('B'), ['G', i])
+
+    # Metto tutti i pezzi neri
+    scacchiera.metti(Torre('B'), ['H', 1])
+    scacchiera.metti(Cavallo('B'), ['H', 2])
+    scacchiera.metti(Alfiere('B'), ['H', 3])
+    scacchiera.metti(Regina('B'), ['H', 4])
+    scacchiera.metti(Re('B'), ['H', 5])
+    scacchiera.metti(Alfiere('B'), ['H', 6])
+    scacchiera.metti(Cavallo('B'), ['H', 7])
+    scacchiera.metti(Torre('B'), ['H', 8])
+
 
     scacchiera.visualizza()
     print()
