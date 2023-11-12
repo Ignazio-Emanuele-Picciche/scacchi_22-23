@@ -6,6 +6,8 @@ Created on Thu Nov 10 10:10:02 2022
 @author: iannello
 """
 
+from Colore import Colore
+
 class Pezzo:
     """
     modella il generico pezzo del gioco
@@ -33,7 +35,7 @@ class Pezzo:
         self.colore = colore
         self.posizione = posizione
         self.nome = nome
-        self.graphic_rep = '\u29be' if self.colore == 'W' else '\u29bf'
+        self.graphic_rep = '\u29be' if self.colore == Colore.BIANCHI else '\u29bf'
         self.scacchiera = None
 
     def get_graphic_rep(self):
@@ -48,7 +50,7 @@ class Pezzo:
         """
         return self.graphic_rep
 
-    def verifica_mossa(self, destinazione):
+    def verifica_mossa(self, destinazione, colore_turno):
         """
         verifica se il pezzo può essere mosso alla destinazione
 

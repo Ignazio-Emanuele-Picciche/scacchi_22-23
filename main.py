@@ -15,6 +15,7 @@ from Re import Re
 from Alfiere import Alfiere
 from Cavallo import Cavallo
 from Pedone import Pedone
+from Colore import Colore
 
 
 def in_board(posizione):
@@ -34,7 +35,7 @@ def in_board(posizione):
            posizione[1] in range(1, 9)
 
 
-def get_mossa():
+def get_mossa(colore_turno):
     """
     acquisisce una mossa dallo standard input o termina il programma
     La mossa deve essere fornita nel formato:
@@ -57,7 +58,7 @@ def get_mossa():
 
     """
     while True:
-        mossa = input("Dammi la mossa: ")
+        mossa = input(f"Turno dei {colore_turno.name}. Dammi la mossa: ")
         if not len(mossa) == 5:  # l'input non è una mossa
             print('La lunghezza della stringa non è valida')
             exit(0)              # termina il programma
@@ -85,47 +86,49 @@ if __name__ == "__main__":
 
     # Metto i pedoni bianchi    
     for i in range(1,9):
-        scacchiera.metti(Pedone('W'), ['B', i])
+        scacchiera.metti(Pedone(Colore.BIANCHI), ['B', i])
 
     # Metto tutti i pezzi bianchi
-    scacchiera.metti(Torre('W'), ['A', 1])
-    scacchiera.metti(Cavallo('W'), ['A', 2])
-    scacchiera.metti(Alfiere('W'), ['A', 3])
-    scacchiera.metti(Regina('W'), ['A', 4])
-    scacchiera.metti(Re('W'), ['A', 5])
-    scacchiera.metti(Alfiere('W'), ['A', 6])
-    scacchiera.metti(Cavallo('W'), ['A', 7])
-    scacchiera.metti(Torre('W'), ['A', 8])
+    scacchiera.metti(Torre(Colore.BIANCHI), ['A', 1])
+    scacchiera.metti(Cavallo(Colore.BIANCHI), ['A', 2])
+    scacchiera.metti(Alfiere(Colore.BIANCHI), ['A', 3])
+    scacchiera.metti(Regina(Colore.BIANCHI), ['A', 4])
+    scacchiera.metti(Re(Colore.BIANCHI), ['A', 5])
+    scacchiera.metti(Alfiere(Colore.BIANCHI), ['A', 6])
+    scacchiera.metti(Cavallo(Colore.BIANCHI), ['A', 7])
+    scacchiera.metti(Torre(Colore.BIANCHI), ['A', 8])
 
 
 
     # Metto i pedoni neri    
     for i in range(1,9):
-        scacchiera.metti(Pedone('B'), ['G', i])
+        scacchiera.metti(Pedone(Colore.NERI), ['G', i])
 
     # Metto tutti i pezzi neri
-    scacchiera.metti(Torre('B'), ['H', 1])
-    scacchiera.metti(Cavallo('B'), ['H', 2])
-    scacchiera.metti(Alfiere('B'), ['H', 3])
-    scacchiera.metti(Regina('B'), ['H', 4])
-    scacchiera.metti(Re('B'), ['H', 5])
-    scacchiera.metti(Alfiere('B'), ['H', 6])
-    scacchiera.metti(Cavallo('B'), ['H', 7])
-    scacchiera.metti(Torre('B'), ['H', 8])
+    scacchiera.metti(Torre(Colore.NERI), ['H', 1])
+    scacchiera.metti(Cavallo(Colore.NERI), ['H', 2])
+    scacchiera.metti(Alfiere(Colore.NERI), ['H', 3])
+    scacchiera.metti(Regina(Colore.NERI), ['H', 4])
+    scacchiera.metti(Re(Colore.NERI), ['H', 5])
+    scacchiera.metti(Alfiere(Colore.NERI), ['H', 6])
+    scacchiera.metti(Cavallo(Colore.NERI), ['H', 7])
+    scacchiera.metti(Torre(Colore.NERI), ['H', 8])
 
 
     scacchiera.visualizza()
     print()
 
+    colore_turno = Colore.BIANCHI # Partono a giocare i bianchi
+
     # inizia il gioco
     while True:
         while True:
             # acquisisce mossa da fare
-            (partenza, destinazione) = get_mossa()
+            (partenza, destinazione) = get_mossa(colore_turno)
             # recupera il pezzo da muovere
             pezzo = scacchiera.get_pezzo(partenza)
             # muovi il pezzo sulla scacchiera
-            if pezzo.verifica_mossa(destinazione):  # la mossa è legale
+            if pezzo.verifica_mossa(destinazione, colore_turno):  # la mossa è legale
                 break
         # esegui mossa sulla scacchiera
         if not scacchiera.get_pezzo(destinazione) is None:  # la casella è occupata
@@ -135,4 +138,10 @@ if __name__ == "__main__":
 
         scacchiera.visualizza()
         print()
+
+        # Cambio Turno
+        if colore_turno == Colore.BIANCHI:
+            colore_turno = Colore.NERI
+        else:
+            colore_turno = Colore.BIANCHI
 

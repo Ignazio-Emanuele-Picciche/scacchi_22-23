@@ -1,10 +1,12 @@
 from Pezzo import Pezzo
+from Colore import Colore
 
 class Cavallo(Pezzo):
 
     def __init__(self, colore, posizione=None):
         super().__init__(colore, posizione, 'Cavallo')
-        self.graphic_rep = '\u2658' if self.colore == 'W' else '\u265E'
+        self.graphic_rep = '\u2658' if self.colore == Colore.BIANCHI else '\u265E'
+        self.colore = colore
 
         
     def verifica_mossa(self, destinazione):
@@ -16,7 +18,7 @@ class Cavallo(Pezzo):
 
             # mi calcolo le posizioni possibili
             print(self.scacchiera.get_pezzo(self.posizione).posizione)
-            
+
 
 
             

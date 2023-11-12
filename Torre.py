@@ -7,6 +7,7 @@ Created on Thu Nov 14 10:10:02 2022
 """
 
 from Pezzo import Pezzo
+from Colore import Colore
 
 
 class Torre(Pezzo):
@@ -16,7 +17,7 @@ class Torre(Pezzo):
 
     def __init__(self, colore, posizione=None):
         super().__init__(colore, posizione, 'Torre')
-        self.graphic_rep = '\u2656' if self.colore == 'W' else '\u265c'
+        self.graphic_rep = '\u2656' if self.colore == Colore.BIANCHI else '\u265c'
 
     def verifica_mossa(self, destinazione):
         """
