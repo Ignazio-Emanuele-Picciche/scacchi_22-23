@@ -9,7 +9,7 @@ class Cavallo(Pezzo):
         self.colore = colore
 
         
-    def verifica_mossa(self, destinazione):
+    def verifica_mossa(self, destinazione, colore_turno):
         if super().verifica_mossa(destinazione): # Verifico la mossa di base
             # prendo la posizione del cavallo come centro asse, e da li mi calcolo e creo un vettore
             # con le sue posizioni possibili 

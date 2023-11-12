@@ -19,7 +19,10 @@ class Torre(Pezzo):
         super().__init__(colore, posizione, 'Torre')
         self.graphic_rep = '\u2656' if self.colore == Colore.BIANCHI else '\u265c'
 
-    def verifica_mossa(self, destinazione):
+
+
+    # La torre si può muovere sia avanti che indietro lungo le assi
+    def verifica_mossa(self, destinazione, colore_turno):
         """
         verifica se la Torre può essere mosso alla destinazione
 
@@ -34,7 +37,7 @@ class Torre(Pezzo):
         indica se la mossa è legale o no
 
         """
-        if super().verifica_mossa(destinazione):  # le condizioni generiche sono verificate
+        if super().verifica_mossa(destinazione, colore_turno):  # le condizioni generiche sono verificate
             if self.posizione[0] == destinazione[0]:  # la mossa è lungo la stessa colonna
                 # verifica che non ci siano pezzi tra la casella di partenza e quella di arrivo
                 # per gestire corretamente il ciclo deve distinguere il caso di mossa per righe crescenti o decrescenti

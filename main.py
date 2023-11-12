@@ -16,6 +16,7 @@ from Alfiere import Alfiere
 from Cavallo import Cavallo
 from Pedone import Pedone
 from Colore import Colore
+import os
 
 
 def in_board(posizione):
@@ -114,6 +115,7 @@ if __name__ == "__main__":
     scacchiera.metti(Cavallo(Colore.NERI), ['H', 7])
     scacchiera.metti(Torre(Colore.NERI), ['H', 8])
 
+    os.system('cls') # pulisco il terminale
 
     scacchiera.visualizza()
     print()
@@ -130,11 +132,14 @@ if __name__ == "__main__":
             # muovi il pezzo sulla scacchiera
             if pezzo.verifica_mossa(destinazione, colore_turno):  # la mossa è legale
                 break
+        
         # esegui mossa sulla scacchiera
         if not scacchiera.get_pezzo(destinazione) is None:  # la casella è occupata
             scacchiera.togli(destinazione)  # "mangia" il pezzo che occupa la casella
         scacchiera.togli(partenza)
         scacchiera.metti(pezzo, destinazione)
+
+        os.system('cls') # pulisco il terminale
 
         scacchiera.visualizza()
         print()

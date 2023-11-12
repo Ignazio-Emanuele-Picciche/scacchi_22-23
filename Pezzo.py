@@ -70,6 +70,11 @@ class Pezzo:
             if pezzo.colore == self.colore:
                 print(f'La casella {destinazione[0]}{destinazione[1]} è occupata da un pezzo dello stesso colore')
                 return False
+                
+        if not self.colore == colore_turno:
+            print(f'Non è il turno dei {self.colore.name}!')
+            return False
+
         return True  # per ora la mossa è sempre legale
     
     def metti(self, posizione, scacchiera=None):
