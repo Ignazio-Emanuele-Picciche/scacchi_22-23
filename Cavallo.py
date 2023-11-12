@@ -7,7 +7,17 @@ class Cavallo(Pezzo):
         self.graphic_rep = '\u2658' if self.colore == 'W' else '\u265E'
 
         
-    # def verifica_mossa(self, destinazione):
+    def verifica_mossa(self, destinazione):
+        if super().verifica_mossa(destinazione): # Verifico la mossa di base
+            # prendo la posizione del cavallo come centro asse, e da li mi calcolo e creo un vettore
+            # con le sue posizioni possibili 
 
-        # if super().verifica_mossa(destinazione): # Verifico la mossa di base
+            dest_poss=[]
+
+            # mi calcolo le posizioni possibili
+            print(self.scacchiera.get_pezzo(self.posizione).posizione)
+            
+
+
+            
 

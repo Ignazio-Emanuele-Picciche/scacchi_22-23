@@ -123,5 +123,6 @@ class Scacchiera:
                 row_rep += ' ' + self.piano[col][row] + ' |'
             print(row_rep)
         print('  +---+---+---+---+---+---+---+---+')
+        print('    1   2   3   4   5   6   7   8')
 
         
