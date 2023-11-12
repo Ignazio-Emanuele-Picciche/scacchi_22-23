@@ -10,8 +10,6 @@ class Pedone(Pezzo):
         self.primo_passo=False
 
     def verifica_mossa(self, destinazione, colore_turno):
-
-        mossa_valida = False
         
         row={'A':1, 
              'B':2,
@@ -41,18 +39,18 @@ class Pedone(Pezzo):
                 if (((not self.primo_passo and row_diff == 2 and self.scacchiera.get_pezzo([row_key[row[destinazione[0]]], destinazione[1]]) == None) ) or row_diff == 1) \
                         and self.posizione[1] == destinazione[1] and self.scacchiera.get_pezzo(destinazione) == None:
                     self.primo_passo=True
-                    mossa_valida = True
+                    return True
                 # Gestisco lo spostamento in diagonale per mangiare
                 elif row_diff == 1 and (destinazione[1] == self.posizione[1]+1 or destinazione[1] == self.posizione[1]-1) \
                         and not self.scacchiera.get_pezzo(destinazione) == None :
-                    mossa_valida = True
+                    return True
                 else:
                     print('Mossa non valida. Riprova.')
             else:
                 print('Non puoi tornare indietro!')
-
-        
-        return mossa_valida
+        else:
+            print(f'La mossa {self.posizione[0]}{self.posizione[1]}, {destinazione[0]}{destinazione[1]} non è legale per il Pedone')
+            return False
                 
 
     

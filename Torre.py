@@ -38,7 +38,7 @@ class Torre(Pezzo):
 
         """
         if super().verifica_mossa(destinazione, colore_turno):  # le condizioni generiche sono verificate
-            if self.posizione[0] == destinazione[0]:  # la mossa è lungo la stessa colonna
+            if self.posizione[0] == destinazione[0]:  # la mossa è lungo la stessa riga
                 # verifica che non ci siano pezzi tra la casella di partenza e quella di arrivo
                 # per gestire corretamente il ciclo deve distinguere il caso di mossa per righe crescenti o decrescenti
                 first = self.posizione[1]+1 if self.posizione[1]+1 < destinazione[1] else destinazione[1]+1  # prima riga da esaminare
@@ -48,7 +48,7 @@ class Torre(Pezzo):
                         print(f"La mossa non è legale perché è presente un pezzo ({self.scacchiera.get_pezzo([destinazione[0], riga]).nome}) nella casella {destinazione[0]}{riga}")
                         return False
                 return True
-            elif self.posizione[1] == destinazione[1]:  # la mossa è lungo la stessa riga
+            elif self.posizione[1] == destinazione[1]:  # la mossa è lungo la stessa colonna
                 # verifica che non ci siano pezzi tra la casella di partenza e quella di arrivo
                 # per gestire corretamente il ciclo deve distinguere il caso di mossa per colonne crescenti o decrescenti
                 first = ord(self.posizione[0])+1 if ord(self.posizione[0])+1 < ord(destinazione[0]) else ord(destinazione[0])+1  # prima colonna da esaminare
